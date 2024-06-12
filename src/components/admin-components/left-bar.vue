@@ -59,7 +59,7 @@ const nav_list = ref<any[]>([
                             <Icon :icon="list.icon"
                                 :class="$route.path == list.path ? 'text-xl text-[#111CEF]' : ' text-xl text-[#A0ACD2]'" />
                         </div>
-                        <div :class="$route.path == list.path ? 'text-md' : ' text-md text-[#A0ACD2]'">
+                        <div :class="$route.path == list.path ? 'text-base' : ' text-md text-[#A0ACD2]'">
                             {{ list.title }}
                         </div>
                     </div>
