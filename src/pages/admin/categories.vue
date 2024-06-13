@@ -160,6 +160,7 @@ async function sendForm() {
                 await getCategories()
                 Loading.hide()
                 category_data.value.dialog.model_value = false
+                toast.success("Kategoriya muvaffaqiyatli yaratildi!")
             }, 1000)
         } catch (err) {
             toast.error("Yangi kategoriya yaratishda xatolik yuz berdi!")

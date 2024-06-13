@@ -113,6 +113,7 @@ async function sendForm() {
             await getBannerData()
             Loading.hide()
             banner_data.value.dialog.model_value = false
+            toast.success("Banner muvaffaqiyatli yaratildi!")
         }, 1000)
     } catch (err) {
         toast.error("Yangi banner yaratishda xatolik yuz berdi!")
