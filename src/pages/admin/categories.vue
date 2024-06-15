@@ -136,6 +136,7 @@ async function getCategories() {
         Loading.show()
         const { data } = await admin.get("/api/get-all-categories")
         category_data.value.data = data.response.data
+        Loading.hide()
     } catch (err) {
         toast.error("Kategoriyalarni yuklab olishda xatolik yuz berdi!")
     } finally {
@@ -179,7 +180,6 @@ async function sendForm() {
             toast.success("Kategoriya muvaffaqiyatli o'zgartirildi!")
         } catch (err) {
             toast.error("Yangi kategoriya yaratishda xatolik yuz berdi!")
-            Loading.hide()
         } finally {
             Loading.hide()
         }
@@ -228,7 +228,8 @@ onMounted(() => {
                 no-data-label="Ma'lumotlar mavjud emas!">
                 <template #body-cell-images="props">
                     <q-td>
-                        <img :src="getUrlForFile(props.row.images[0].name)" alt="#banner" width="40">
+                        <img :src="getUrlForFile(props.row.images.length ? props.row.images[0].name : '')" alt="#banner"
+                            width="40">
                     </q-td>
                 </template>
 
