@@ -16,7 +16,7 @@ import TopTitle from "../components/defaults/top-title.vue"
             </div>
         </div>
         <div class="for_desktop bg-[#F4F7FE] px-4 py-4">
-            <div class="h-screen">
+            <div>
                 <RouterView />
             </div>
             <div class="bg-[#F4F7FE]">

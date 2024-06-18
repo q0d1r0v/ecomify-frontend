@@ -7,9 +7,13 @@ import { useI18n } from "vue-i18n"
 import { toast } from 'vue3-toastify';
 import { client } from '../../utils/axios';
 import { CreateUrl } from "../../modules/create-url"
+import { useRouter } from "vue-router"
 
 // lang
 const { locale } = useI18n()
+
+// router
+const router = useRouter()
 
 // data
 const search = ref<string>('')
@@ -50,6 +54,40 @@ function showDrawer(action_name: string) {
         mobile_drawer.value = true
     }
 }
+function searchProducts() {
+    router.push({
+        path: "/products",
+        query: {
+            search: search.value,
+            category_id: "",
+            category_name: ""
+        }
+    })
+}
+function goToWithCategory(category_data: any, device_name: string) {
+    if (device_name === "desktop") {
+        desktop_drawer.value = false
+        router.push({
+            path: "/products",
+            query: {
+                search: '',
+                category_id: category_data.id,
+                category_name: category_data.category_name,
+            }
+        })
+    } else {
+        mobile_drawer.value = false
+        router.push({
+            path: "/products",
+            query: {
+                search: '',
+                category_id: category_data.id,
+                category_name: category_data.category_name,
+            }
+        })
+    }
+    console.log(category_data)
+}
 
 onMounted(() => {
     getCategories()
@@ -60,7 +98,7 @@ onMounted(() => {
     <div>
         <div class="desktop">
             <div class="left flex items-center justify-start py-4">
-                <div class="text-xl cursor-pointer select-none text-[#111CEF] font-semibold">
+                <div class="text-xl cursor-pointer select-none text-[#111CEF] font-semibold" @click="$router.push('/')">
                     ECOMIFY
                 </div>
 
@@ -75,10 +113,11 @@ onMounted(() => {
                 </div>
 
                 <div class="ml-4 w-[250px]">
-                    <q-input v-model="search" outlined dense placeholder="Qidiruv..." class="overflow-hidden">
+                    <q-input v-model="search" outlined dense placeholder="Qidiruv..." class="overflow-hidden"
+                        @keyup.enter="searchProducts">
                         <template #append>
-                            <div
-                                class="bg-[#111CEF] text-sm text-white absolute right-0 top-0 bottom-0 rounded-tr-md rounded-br-md flex items-center justify-center cursor-pointer select-none">
+                            <div class="bg-[#111CEF] text-sm text-white absolute right-0 top-0 bottom-0 rounded-tr-md rounded-br-md flex items-center justify-center cursor-pointer select-none"
+                                @click="searchProducts">
                                 <span class="text-xs px-2">
                                     Qidirish
                                 </span>
@@ -119,10 +158,11 @@ onMounted(() => {
             </div>
             <div>
                 <div class="ml-4 w-[200px]">
-                    <q-input v-model="search" outlined dense placeholder="Qidiruv..." class="overflow-hidden">
+                    <q-input v-model="search" outlined dense placeholder="Qidiruv..." class="overflow-hidden"
+                        @keyup.enter="searchProducts">
                         <template #append>
-                            <div
-                                class="bg-[#111CEF] text-sm text-white absolute right-0 top-0 bottom-0 rounded-tr-md rounded-br-md flex items-center justify-center cursor-pointer select-none">
+                            <div class="bg-[#111CEF] text-sm text-white absolute right-0 top-0 bottom-0 rounded-tr-md rounded-br-md flex items-center justify-center cursor-pointer select-none"
+                                @click="searchProducts">
                                 <span class="text-xs px-2">
                                     Qidirish
                                 </span>
@@ -133,7 +173,7 @@ onMounted(() => {
             </div>
         </div>
     </div>
-    <q-layout style="position: fixed; z-index: 100;">
+    <q-layout style="position: absolute" v-if="desktop_drawer">
         <q-drawer v-model="desktop_drawer" overlay ref="target" :width="500" behavior="mobile" persistent>
             <div class="px-4 pt-4 text-xl flex items-center justify-between">
                 <div>
@@ -144,8 +184,8 @@ onMounted(() => {
                 </div>
             </div>
             <div class="drawer flex items-center gap-4 p-4">
-                <div class="flex items-center gap-2 border hover:text-[#111CEF] hover:border-[#111CEF] p-2 rounded-md cursor-pointer select-none"
-                    v-for="category of categories">
+                <div :class="category.id == $route.query.category_id ? `flex items-center gap-2 border text-[#111CEF] border-[#111CEF] p-2 rounded-md cursor-pointer select-none` : 'flex items-center gap-2 border hover:text-[#111CEF] hover:border-[#111CEF] p-2 rounded-md cursor-pointer select-none'"
+                    v-for="category of categories" @click="goToWithCategory(category, 'desktop')">
                     <img :src="CreateUrl(category.images[0].name)" alt="#category" width="40">
                     <div class="text-lg">
                         {{ category.category_name }}
@@ -155,14 +195,14 @@ onMounted(() => {
         </q-drawer>
     </q-layout>
 
-    <q-layout style="position: fixed; z-index: 100;">
+    <q-layout view="hHh lpR fFf" style="position: absolute" v-if="mobile_drawer">
         <q-drawer v-model="mobile_drawer" overlay ref="target" :width="350" behavior="mobile">
             <div class="flex items-center justify-end pt-2 pr-2">
                 <Icon icon="ri-close-line" class="cursor-pointer text-lg" @click="mobile_drawer = false" />
             </div>
             <div class="px-4 text-xl flex items-center justify-between">
-                <div class="text-xl">
-                    Katalog
+                <div class="text-xl cursor-pointer select-none text-[#111CEF] font-semibold" @click="$router.push('/')">
+                    ECOMIFY
                 </div>
 
                 <div>
@@ -185,9 +225,10 @@ onMounted(() => {
                 </div>
             </div>
             <div class="drawer gap-4 p-4">
-                <div class="gap-2 active:text-[#111CEF] active:border-[#111CEF] rounded-md cursor-pointer select-none"
+                <div :class="category.id == $route.query.category_id ? 'gap-2 text-[#111CEF] border-[#111CEF] rounded-md cursor-pointer select-none' : 'gap-2 active:text-[#111CEF] active:border-[#111CEF] rounded-md cursor-pointer select-none'"
                     v-for="category of categories">
-                    <div class="text-md mt-2 border transition-all rounded-md px-2 py-1 flex items-center gap-2">
+                    <div class="text-md mt-2 border transition-all rounded-md px-2 py-1 flex items-center gap-2"
+                        @click="goToWithCategory(category, 'mobile')">
                         <div>
                             <img :src="CreateUrl(category.images[0].name)" alt="#category" width="20">
                         </div>
