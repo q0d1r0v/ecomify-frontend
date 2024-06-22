@@ -17,6 +17,7 @@ import ProductsPage from "../pages/admin/products.vue";
 import OrdersPage from "../pages/admin/orders.vue";
 import UsersPage from "../pages/admin/users.vue";
 import ShowProductsPage from "../pages/products.vue";
+import ProductPage from "../pages/product.vue";
 import NotFoundPage from "../pages/not-found-page.vue";
 
 // export router
@@ -106,6 +107,13 @@ export const router = createRouter({
           component: ShowProductsPage,
           meta: {
             title: "Tovarlar",
+          },
+        },
+        {
+          path: "/product",
+          component: ProductPage,
+          meta: {
+            title: "Tovar",
           },
         },
       ],

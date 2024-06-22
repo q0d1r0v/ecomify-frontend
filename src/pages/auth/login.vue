@@ -28,7 +28,6 @@ async function signIn() {
             username: form.value.username,
             password: form.value.password
         })
-        console.log(data)
         if (data?.status == 400) {
             toast.error("Kirishda xatolik yuz berdi!")
         } else {

@@ -94,7 +94,7 @@ onMounted(() => {
             <div class="grid lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3 max-[630px]:grid-cols-2 gap-4 mt-4"
                 v-if="products_data.products.length">
                 <div class="bg-white rounded-md p-4 card cursor-pointer" v-for="product of products_data.products"
-                    :index="product.id" CssClass="UseHand">
+                    :index="product.id" @click="$router.push({ path: '/product', query: { product_id: product.id } })">
                     <div class="!w-full">
                         <img :src="CreateUrl(product.images[0].name)" :alt="product.name"
                             style="width: 100% !important;">

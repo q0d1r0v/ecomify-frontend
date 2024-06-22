@@ -40,7 +40,6 @@ async function getCategories() {
             }
         })
         categories.value = data.data
-        console.log(data)
     } catch (err) {
         toast.error("Kategoriyalarni yuklab olishda xatolik yuz berdi!")
     } finally {
@@ -86,7 +85,6 @@ function goToWithCategory(category_data: any, device_name: string) {
             }
         })
     }
-    console.log(category_data)
 }
 
 onMounted(() => {
