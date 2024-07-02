@@ -58,7 +58,6 @@ async function getProductData() {
             }
         })
         product_data.value = data.response.data
-        console.log(data)
     } catch (err) {
         toast.error("Product ma'lumotlarini yuklab olishda xatolik yuz berdi!")
     } finally {

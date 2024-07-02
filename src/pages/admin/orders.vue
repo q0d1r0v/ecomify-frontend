@@ -143,7 +143,6 @@ async function getOrders() {
 
         orders_data.value.data = data.response.data.data
         orders_data.value.pagination.max = ~~data.response.data.last_page || 1
-        console.log(data)
     } catch (err) {
         toast.error("Buyurtmalarni yuklab olishda xatolik yuz berdi!")
     } finally {

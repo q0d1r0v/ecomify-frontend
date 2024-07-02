@@ -37,7 +37,7 @@ const nav_list = ref<any[]>([
     },
     {
         id: 6,
-        title: 'Foydalanuvchilar',
+        title: 'Foydalanuvchilar(admin)',
         path: '/admin/users',
         icon: 'ri-group-line',
     }

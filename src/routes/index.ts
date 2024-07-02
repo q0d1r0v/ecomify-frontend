@@ -85,7 +85,7 @@ export const router = createRouter({
           path: "users",
           component: UsersPage,
           meta: {
-            title: "Foydalanuvchilar",
+            title: "Foydalanuvchilar(admin)",
             auth: true,
           },
         },
