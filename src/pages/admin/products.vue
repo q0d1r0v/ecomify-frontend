@@ -2,7 +2,7 @@
 // imports
 import { Icon } from "@iconify/vue/dist/iconify.js";
 import { Loading } from "quasar";
-import { ref, onMounted, nextTick } from "vue"
+import { ref, onMounted } from "vue"
 import { toast } from "vue3-toastify";
 import { admin, client } from "../../utils/axios";
 

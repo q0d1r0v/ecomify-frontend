@@ -6,6 +6,7 @@ import { CreateUrl } from "../modules/create-url";
 import { Loading } from "quasar";
 import { toast } from "vue3-toastify";
 import { client } from "../utils/axios";
+import { useI18n } from "vue-i18n";
 
 // types
 interface IProductsDataType {
@@ -16,6 +17,9 @@ interface IProductsDataType {
     },
     products: any[]
 }
+
+// i18n
+const t = useI18n()
 
 // route
 const route = useRoute()
@@ -57,7 +61,7 @@ async function getProducts() {
             products_data.value.pagination.max = data.response.data.last_page
         }
     } catch (err) {
-        toast.error("Tovarlarni yuklab olishda xatolik yuz bderi!")
+        toast.error(t.t('products.error_message'))
     } finally {
         Loading.hide()
     }
@@ -80,7 +84,8 @@ onMounted(() => {
     <div class="min-h-screen">
         <div class="flex items-center justify-between">
             <div class="">
-                <span class="font-semibold">Qidiruv:</span> {{ route.query.search ? route.query.search :
+                <span class="font-semibold">{{ $t('products.search') }}</span> {{ route.query.search ?
+                    route.query.search :
                     route.query.category_name }}
             </div>
             <div>
@@ -113,7 +118,7 @@ onMounted(() => {
             <div v-else>
                 <div class="flex items-center justify-center mt-4">
                     <div class="m-auto text-center">
-                        <div class="mb-4 text-lg">No data</div>
+                        <div class="mb-4 text-lg">{{ $t('products.no_data') }}</div>
                         <img src="../assets/no-data.svg" alt="#no_data" width="240">
                     </div>
                 </div>

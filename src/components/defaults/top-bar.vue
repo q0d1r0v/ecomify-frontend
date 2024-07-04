@@ -11,6 +11,7 @@ import { useRouter } from "vue-router"
 
 // lang
 const { locale } = useI18n()
+const t = useI18n()
 
 // router
 const router = useRouter()
@@ -41,7 +42,7 @@ async function getCategories() {
         })
         categories.value = data.data
     } catch (err) {
-        toast.error("Kategoriyalarni yuklab olishda xatolik yuz berdi!")
+        toast.error(t.t('bars.messages.get_categories_error_message'))
     } finally {
         Loading.hide()
     }
@@ -100,24 +101,24 @@ onMounted(() => {
                     ECOMIFY
                 </div>
 
-                <div class="category_button ml-6 px-4 py-2 gap-2 rounded-md cursor-pointer select-none"
+                <div class="category_button ml-6 px-4 py-[10px] gap-2 rounded-md cursor-pointer select-none"
                     @click="showDrawer('desktop')">
                     <div>
                         <Icon icon="ri-menu-4-line" />
                     </div>
                     <div>
-                        Katalog
+                        {{ $t('bars.category_title') }}
                     </div>
                 </div>
 
                 <div class="ml-4 w-[250px]">
-                    <q-input v-model="search" outlined dense placeholder="Qidiruv..." class="overflow-hidden"
+                    <q-input v-model="search" outlined dense :placeholder="t.t('bars.search')" class="overflow-hidden"
                         @keyup.enter="searchProducts">
                         <template #append>
                             <div class="bg-[#111CEF] text-sm text-white absolute right-0 top-0 bottom-0 rounded-tr-md rounded-br-md flex items-center justify-center cursor-pointer select-none"
                                 @click="searchProducts">
                                 <span class="text-xs px-2">
-                                    Qidirish
+                                    {{ $t('bars.btn_search_text') }}
                                 </span>
                             </div>
                         </template>
@@ -144,25 +145,25 @@ onMounted(() => {
 
         <div class="mobile flex items-center justify-between px-2 py-2">
             <div>
-                <div class="category_button px-4 py-2 gap-2 rounded-md cursor-pointer select-none"
+                <div class="category_button px-4 py-[10px] gap-2 rounded-md cursor-pointer select-none"
                     @click="showDrawer('mobile')">
                     <div>
                         <Icon icon="ri-menu-4-line" />
                     </div>
                     <div>
-                        Katalog
+                        {{ $t('bars.category_title') }}
                     </div>
                 </div>
             </div>
             <div>
-                <div class="ml-4 w-[200px]">
-                    <q-input v-model="search" outlined dense placeholder="Qidiruv..." class="overflow-hidden"
+                <div class="ml-4 w-[190px]">
+                    <q-input v-model="search" outlined dense :placeholder="t.t('bars.search')" class="overflow-hidden"
                         @keyup.enter="searchProducts">
                         <template #append>
                             <div class="bg-[#111CEF] text-sm text-white absolute right-0 top-0 bottom-0 rounded-tr-md rounded-br-md flex items-center justify-center cursor-pointer select-none"
                                 @click="searchProducts">
                                 <span class="text-xs px-2">
-                                    Qidirish
+                                    {{ $t('bars.btn_search_text') }}
                                 </span>
                             </div>
                         </template>
@@ -175,7 +176,7 @@ onMounted(() => {
         <q-drawer v-model="desktop_drawer" overlay ref="target" :width="500" behavior="mobile" persistent>
             <div class="px-4 pt-4 text-xl flex items-center justify-between">
                 <div>
-                    Katalog
+                    {{ $t('bars.nav_category_title') }}
                 </div>
                 <div>
                     <Icon icon="ri-close-line" class="cursor-pointer" @click="desktop_drawer = false" />

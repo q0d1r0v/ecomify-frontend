@@ -22,7 +22,7 @@ function goBack() {
             <img src="../assets/not_found_svg_icon.svg" alt="#404" width="600">
             <div class="flex items-center justify-center">
                 <div class="border rounded-md px-2 py-2 text-sm cursor-pointer select-none" @click="goBack">
-                    Bosh sahifaga qaytish
+                    {{ $t('not_fount_text') }}
                 </div>
             </div>
         </div>

@@ -20,8 +20,8 @@ const i18n = createI18n({
   locale: localStorage.getItem("lang") || "uz",
   legacy: false,
   messages: {
-    uz,
     ru,
+    uz,
   },
 });
 

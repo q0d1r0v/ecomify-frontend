@@ -1,6 +1,5 @@
 <script setup lang="ts">
 // imports
-import { Icon } from '@iconify/vue/dist/iconify.js';
 import { Loading } from 'quasar';
 import { ref } from 'vue';
 import { toast } from 'vue3-toastify';

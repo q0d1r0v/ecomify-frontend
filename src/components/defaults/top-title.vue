@@ -1,7 +1,7 @@
 <template>
     <div class="bg-[#111CEF] text-white" id="scroll-container">
         <div id="scroll-text">
-            <span class="font-semibold">Aloqa uchun telefon raqam:</span> +998 99 999 99 99
+            <span class="font-semibold">{{ $t('bars.top_title') }}</span> +998 99 999 99 99
         </div>
     </div>
 </template>

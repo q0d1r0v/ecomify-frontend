@@ -1,47 +1,48 @@
+<script setup lang="ts">
+// imports
+import { Icon } from "@iconify/vue"
+
+</script>
+
 <template>
     <div class="row min-h-[200px] border-t">
         <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="text-lg font-semibold mt-4">
-                Biz haqimizda
+                {{ $t('bars.footer.about_us.title') }}
             </div>
 
-            <div class="text-xs mt-4">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero molestias tenetur aperiam. Sint
-                voluptas magnam aliquam fugit perspiciatis distinctio! Dignissimos suscipit accusantium similique
-                adipisci reprehenderit repudiandae odit sit officiis quo?
+            <div class="text-xs mt-4 pr-2">
+                {{ $t('bars.footer.about_us.value') }}
             </div>
         </div>
         <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="text-lg font-semibold mt-4">
-                Foydalanuvchilarga
+                {{ $t('bars.footer.for_users.title') }}
             </div>
 
-            <div class="text-xs mt-4">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero molestias tenetur aperiam. Sint
-                voluptas magnam aliquam fugit perspiciatis distinctio! Dignissimos suscipit accusantium similique
-                adipisci reprehenderit repudiandae odit sit officiis quo?
+            <div class="text-xs mt-4 pr-2">
+                {{ $t('bars.footer.for_users.value') }}
             </div>
         </div>
         <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="text-lg font-semibold mt-4">
-                Yangiliklar
+                {{ $t('bars.footer.news.title') }}
             </div>
 
-            <div class="text-xs mt-4">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero molestias tenetur aperiam. Sint
-                voluptas magnam aliquam fugit perspiciatis distinctio! Dignissimos suscipit accusantium similique
-                adipisci reprehenderit repudiandae odit sit officiis quo?
+            <div class="text-xs mt-4 pr-2">
+                {{ $t('bars.footer.news.value') }}
             </div>
         </div>
         <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="text-lg font-semibold mt-4">
-                Ijtimoiy tarmoqlarda
+                {{ $t('bars.footer.social.title') }}
             </div>
 
             <div class="text-xs mt-4">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero molestias tenetur aperiam. Sint
-                voluptas magnam aliquam fugit perspiciatis distinctio! Dignissimos suscipit accusantium similique
-                adipisci reprehenderit repudiandae odit sit officiis quo?
+                <div class="flex items-center gap-2">
+                    <Icon icon="ri-telegram-line" class="text-[25px] cursor-pointer" />
+                    <Icon icon="ri-instagram-line" class="text-[25px] cursor-pointer" />
+                </div>
             </div>
         </div>
     </div>

@@ -8,6 +8,7 @@ import { client } from "../utils/axios";
 import { CreateUrl } from "../modules/create-url";
 import { Icon } from "@iconify/vue/dist/iconify.js";
 import { vMaska } from "maska/vue"
+import { useI18n } from "vue-i18n"
 
 // types
 interface IDialogDataTypes {
@@ -21,6 +22,9 @@ interface IDialogDataTypes {
         description: string,
     }
 }
+
+// i18n
+const t = useI18n()
 
 // route
 const route = useRoute()
@@ -59,7 +63,7 @@ async function getProductData() {
         })
         product_data.value = data.response.data
     } catch (err) {
-        toast.error("Product ma'lumotlarini yuklab olishda xatolik yuz berdi!")
+        toast.error(t.t('product.load_error_message'))
     } finally {
         Loading.hide()
     }
@@ -89,9 +93,9 @@ async function sendForm() {
             product_id: product_data.value.product?.id,
         })
         dialog_data.value.model_value = false
-        toast.success("Buyurtma muvaffaqiyatli yuborildi!")
+        toast.success(t.t('product.create_order_message'))
     } catch (err) {
-        toast.error("Buyurtma berishda xatolik yuz berdi")
+        toast.error(t.t('product.create_order_error_message'))
     } finally {
         Loading.hide()
     }
@@ -125,7 +129,7 @@ onMounted(() => {
                     <q-btn unelevated color="primary" @click="showOrderDialog">
                         <div class="flex items-center gap-4">
                             <div>
-                                Buyurtma berish
+                                {{ $t('product.order_btn_text') }}
                             </div>
                             <div class="text-xl">
                                 <Icon icon="ri-shopping-cart-line" />
@@ -136,7 +140,7 @@ onMounted(() => {
             </div>
         </div>
 
-        <div class="mt-6 text-xs">
+        <div class="mt-6 text-xs md:max-w-[1200px]">
             <div v-html="product_data.product_description">
             </div>
         </div>
@@ -144,27 +148,26 @@ onMounted(() => {
         <q-dialog v-model="dialog_data.model_value" persistent>
             <q-card class="p-4 w-[500px]">
                 <div class="text-xl">
-                    Buyurtma berish
+                    {{ $t('product.form.title') }}
                 </div>
                 <div class="mt-4">
-                    <q-input placeholder="*Ism familiyasi" outlined dense class="mt-2" clearable
+                    <q-input :placeholder="t.t('product.form.full_name')" outlined dense class="mt-2" clearable
                         v-model="dialog_data.form.full_name" />
-                    <q-input placeholder="*Address" outlined dense class="mt-2" v-model="dialog_data.form.address"
-                        clearable />
-                    <q-input placeholder="*Telefon raqami" outlined dense class="mt-2"
+                    <q-input :placeholder="t.t('product.form.address')" outlined dense class="mt-2"
+                        v-model="dialog_data.form.address" clearable />
+                    <q-input :placeholder="t.t('product.form.phone_number')" outlined dense class="mt-2"
                         v-model="dialog_data.form.phone_number" clearable v-maska="'+998-##-###-##-##'" />
-                    <q-input placeholder="Qo'shimcha telefon raqami" outlined dense class="mt-2"
+                    <q-input :placeholder="t.t('product.form.additional_phone_number')" outlined dense class="mt-2"
                         v-model="dialog_data.form.additional_phone_number" clearable v-maska="'+998-##-###-##-##'" />
-                    <q-input type="textarea" placeholder="*Izoh" outlined dense class="mt-2"
+                    <q-input type="textarea" :placeholder="t.t('product.form.description')" outlined dense class="mt-2"
                         v-model="dialog_data.form.description" clearable />
                 </div>
                 <div class="flex items-center justify-end gap-2 mt-4">
                     <q-btn color="primary" unelevated
                         :disable="!dialog_data.form.full_name || !dialog_data.form.address || !dialog_data.form.phone_number || !dialog_data.form.description"
-                        @click="sendForm">Buyurtma
-                        berish</q-btn>
-                    <q-btn color="negative" unelevated @click="dialog_data.model_value = false">Bekor
-                        qilish</q-btn>
+                        @click="sendForm">{{ $t('product.form.accept') }}</q-btn>
+                    <q-btn color="negative" unelevated @click="dialog_data.model_value = false">{{
+                $t('product.form.cancel') }}</q-btn>
                 </div>
             </q-card>
         </q-dialog>

@@ -12,7 +12,7 @@ import TopBar from '../components/admin-components/top-bar.vue'
         </div>
         <div class="w-5/6">
             <TopBar />
-            <div class="h-screen bg-[#F4F7FE] w-full px-4 py-4">
+            <div class="min-h-screen bg-[#F4F7FE] w-full px-4 py-4">
                 <RouterView />
             </div>
         </div>

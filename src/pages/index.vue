@@ -7,9 +7,6 @@ import { toast } from "vue3-toastify";
 import { client } from "../utils/axios";
 import { CreateUrl } from "../modules/create-url";
 
-// use lang
-const { t } = useI18n()
-
 // data
 const slide = ref(0)
 const banners = ref<any[]>([])
@@ -51,7 +48,7 @@ onMounted(() => {
 
         <div>
             <div class="mt-6 text-lg cursor-pointer">
-                Taxminiy tovarlar
+                {{ $t('random_products_text') }}
             </div>
 
             <div class="mb-4">
