@@ -3,7 +3,7 @@
 import { ref, onMounted } from 'vue';
 import { Icon } from '@iconify/vue/dist/iconify.js';
 import { Loading } from 'quasar';
-import { ToastActions, toast } from 'vue3-toastify';
+import { toast } from 'vue3-toastify';
 import { admin, client } from '../../utils/axios';
 
 // types
