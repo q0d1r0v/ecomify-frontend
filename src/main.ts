@@ -23,7 +23,7 @@ const i18n = createI18n({
     ru,
     uz,
   },
-});
+}); 
 
 createApp(App)
   .use(router)
