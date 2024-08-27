@@ -101,7 +101,7 @@ onMounted(() => {
           class="text-xl cursor-pointer select-none text-[#111CEF] font-semibold"
           @click="$router.push('/')"
         >
-          ECOMIFY 1
+          ECOMIFY
         </div>
 
         <div
