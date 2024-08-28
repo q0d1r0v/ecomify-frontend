@@ -158,7 +158,7 @@ onMounted(() => {
       </div>
     </div>
 
-    <div class="mobile flex items-center justify-between px-2 py-2">
+    <div class="mobile flex items-center justify-between px-2 py-2 bg-white">
       <div>
         <div
           class="category_button px-4 py-[10px] gap-2 rounded-md cursor-pointer select-none"

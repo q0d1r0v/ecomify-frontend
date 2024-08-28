@@ -10,11 +10,4 @@ export default defineConfig({
       sassVariables: "src/quasar-variables.sass",
     }),
   ],
-  server: {
-    hmr: {
-      port: 3000,
-      host: "localhost",
-      protocol: "http",
-    },
-  },
 });
